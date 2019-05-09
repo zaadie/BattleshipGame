@@ -1,7 +1,6 @@
 # BattleshipGame
 Battleship Game in Java
 
-Social Network GUI
 
 Constraints of the project
 
