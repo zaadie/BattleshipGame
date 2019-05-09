@@ -4,24 +4,42 @@ import battleshipmodel.*;
 import java.util.Scanner;
 import java.util.Arrays;
 
-
 // The BattleshipGame class contains the driver implementation
 // for the Battleship game.
 public class BattleshipGame {
-    
-    // Driver method.
-    public static void main(String[] args) {
-        
-        System.out.println("Welcome to the Battleship game.");
-        
-        // Your implementation goes here.
-        String[][] board = new String [10][10];
-        for (int r = 0; r<board.length;r++){
-        	   for (int c = 0; c <board.length;c++){
-        	      board[r][c] = " ";  // Initialize the cell
-        	      System.out.print("[" +board[r][c] + "]"); // Display the content of cell board
-        	   }
-        	   System.out.println();  // go to next line
-        }
-    }
+
+	// Driver method.
+	static int row;
+	static int column;
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		// Create User and Computer Players
+		Player p1 = new Player();
+		Player p2 = new Player();
+
+		System.out.println("Welcome to the Battleship game.");
+		System.out.println("Target grid (opponent): ");
+
+		p1.printOcean();
+		System.out.println("Ocean grid (you): ");
+		p2.printOcean();
+		
+		System.out.println("Turn "+ p1.showTurns() + "...");
+		
+		System.out.println("Guess a row (or 'x' for exit): ");
+		row = sc.nextInt();
+		p1.setRow(row);
+		System.out.println("Row is: " + p1.getRow());
+		
+		
+		System.out.print("Guess a column (or 'x' for exit): ");
+		column = sc.nextInt();
+		p1.setColumn(column);
+		System.out.println("Column is: " + p1.getColumn());
+
+		sc.close();
+		
+	}
 }
