@@ -1,33 +1,89 @@
 package battleshipmodel;
 
-// Class Ship contains all implementation for a ship of any size.
 public class Ship {
 
-    // Implementation for this class is already provided as follows.
-    
-    // Instance variables.
-    private String name;
-    private int length;
-    
-    // Constructor.
-    protected Ship(String name, int length) {
-        this.name = name;
-        this.length = length;
+	/* Instance Variables */
+	private int row;
+	private int col;
+	private int length;
+	private int direction;
+
+	// Direction Constants
+	public static final int UNSET = -1;
+	public static final int HORIZONTAL = 0;
+	public static final int VERTICAL = 1;
+
+	// Constructor
+	public Ship(int length) {
+		this.length = length;
+		this.row = -1;
+		this.col = -1;
+		this.direction = UNSET;
+	}
+	
+	/*
+	 * ACCESSORS
+	 */
+	
+	// Getter for the row value
+    public int getRow()
+    {
+        return row;
     }
     
-    // Method getName(): Accessor method.
-    protected String getName() {
-        return name;
+    // Getter for the column value
+    public int getCol()
+    {
+        return col;
     }
     
-    // Method getInitial(): Calculates an initial to represent the ship.
-    // Returns '?' if the initial cannot be obtained due to an empty name.
-    protected char getInitial() {
-        return name.equals("") ? '?' : name.charAt(0);
-    }
-    
-    // Method getLength(): Accessor method.
-    protected int getLength() {
+    // Getter for the length of the ship
+    public int getLength()
+    {
         return length;
     }
+    
+    // Getter for the direction
+    public int getDirection()
+    {
+        return direction;
+    }
+
+	/*
+	 * MUTATORS
+	 */
+
+	// Set the location of the ship
+	public void setLocation(int row, int col) {
+		this.row = row;
+		this.col = col;
+	}
+
+	// Set the direction of the ship
+	public void setDirection(int direction) {
+		if (direction != UNSET && direction != HORIZONTAL && direction != VERTICAL)
+			throw new IllegalArgumentException("Invalid direction. It must be -1, 0, or 1");
+		this.direction = direction;
+	}
+	
+	/*
+	 * METHODS
+	 */
+
+	// Has the direction been init
+	public boolean isDirectionSet() {
+		if (direction == UNSET)
+			return false;
+		else
+			return true;
+	}
+
+	// Has the location been init
+	public boolean isLocationSet() {
+		if (row == -1 || col == -1)
+			return false;
+		else
+			return true;
+	}
+
 }
